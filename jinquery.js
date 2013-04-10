@@ -39,12 +39,12 @@
  
     $.fn.SelectMany = function (options) {// Same as SelectMany in LINQ
         var args = $.extend({
-            childCollections: function (element) { return []; },
-            value: function (element, index) { return element; }
+            collection: function (element) { return []; },
+            property: function (element, index) { return element; }
         }, options);
         return $(this).map(function (index, element) {
-            return $(args.childCollections(element)).map(function (innerIndex, innerElement) {
-                return args.value(innerElement, innerIndex);
+            return $(args.collection(element)).map(function (innerIndex, innerElement) {
+                return args.property(innerElement, innerIndex);
             }).get();
         });
     };
